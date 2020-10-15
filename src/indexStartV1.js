@@ -9,8 +9,9 @@ var firstPick = -1;
 var secondPick = -1;
 // statistics about this "round"
 var matches = 0;
+//tried defining cards here.
 //var cards  = document.getElementsByName("card");
-//we tried making the array a global var, then indicated the cards(firstpick).substr
+// tried making the array a global var, then indicated the cards(firstpick).substr
 
 
 
@@ -122,7 +123,7 @@ function enableAllRemainingCards() {
     
         var cards  = document.getElementsByName("card");
         for (var i =0;i<cards.length; i++){
-            if(document.body.style.backgroundimage==none&&hand[i]!=i){// if the backgroundimage is nothing and the card doesnt already exist in the hand. 
+            if(cards[i].backgroundImage!="none"){// if the backgroundimage is nothing and the card doesnt already exist in the hand. 
             cards[i].onclick = handleClick;
             cards[i].style.cursor = 'pointer';
             }
@@ -196,15 +197,16 @@ function disableCard(index) {
     var card = document.getElementById(index);
     card.onclick = () => {}; 
     card.style.cursor = 'none';
-    hand[index]=index;// add this cards id numbe to an empty array at its index. not sure if need to populate with null or not.
-    for(var i=0; i<hand.length;i++){
-        hand[i]=null;
-    }
+   
+    
 }
 
 // disable all of the cards
 function disableAllCards() {
-    document.getElementsByName("card").onclick= ()=> {};
+    for(var i=0; i<hand.length;i++){
+        hand[i]=null;
+    }
+    document.getElementsByName("card").onclick=()=> {};
 
 }
 // END PART 2 - TEST TO HERE //
@@ -217,15 +219,17 @@ function checkCards() {
         matches++
         removeCard(firstPick);
         removeCard(secondPick);
-    }
+    
         if(matches<10){
                 enableAllRemainingCards();
         }
-        else
-        {
-            showback(firstPick);
-            showBack(secondPick);
-        }
+    }
+    else
+    {
+        showBack(firstPick);
+        showBack(secondPick);
+        enableAllRemainingCards();
+    }
     
     // increment the number of tries
     // if the 2 cards match
@@ -243,7 +247,7 @@ function checkCards() {
     // end if
     // update the matches and tries on the page
     showMatches();
-    firstpick=-1;
+    firstPick=-1;
     secondPick=-1;
     // reset the firstpick to -1
     // reset the secondpick to -1
@@ -263,9 +267,13 @@ function showMatches() {
    }
  
      
- }
+ } 
+ 
 function isMatch() {
-    if(cards[firstPick].substr(4,1)== cards[secondPick].substr(4,1)) 
+  //tried to define cards here.
+    //console.log(firstPick+" "+secondPick);
+   
+    if(images[firstPick].substr(4,1)==images[secondPick].substr(4,1)) 
     {
         return true;
     }
@@ -280,7 +288,8 @@ function isMatch() {
 // set the backgroundImage to 'none' to remove the card
 function removeCard(index) {
 var card = document.getElementById(index);
-card.style.backgroundimage = 'none';
+card.style.backgroundImage = 'none';
+hand[index]=index;//add the disabled card to the hand which is not really a hand but a graveyard.
 }
 // END PART 3 - TEST THE ENTIRE APP //
 
