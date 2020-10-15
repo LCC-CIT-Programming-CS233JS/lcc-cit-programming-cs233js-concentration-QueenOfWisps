@@ -27,10 +27,11 @@ window.onload = init;
 function init()
 {
     fillImages();
-    //shuffleImages();
-    //showMatches()
+    shuffleImages();
+    
+    showMatches()
     enableAllCards();
-    showAllBacks();
+    
 
     //we tried initializing th4e array here, John recommended that I take a closer look at initializing the array in the constructor
     //overall review scope of assignment
@@ -43,14 +44,18 @@ function init()
 
 
 
-    /*
+   
     for(var i=0;i< images.length; i++){
         var cardImage = imagePath +images[i];
         var card = document.getElementById(i);
         card.style.backgroundImage= "url('"+ cardImage +"')";
 
     }
-    */
+   
+    showAllBacks();
+   
+    
+    
     
     
 
@@ -88,16 +93,17 @@ function fillImages() {
 
 // shuffles the elements in the images array
 function shuffleImages() {
-    
-    for(var i=0;i>cards.length;i++){
-        var rand = Math.round(Math.random() * 19);
-        var temp=cards[i];
-        cards[i]=cards[rand];
-        cards[rand]=temp;
+
+
+    for(var i=0;i<images.length;i++){
+        var rand = Math.floor(Math.random() * 19);//if doesnt work try math.floor.
+        var temp=images[i];
+        images[i]=images[rand];
+        images[rand]=temp;
 
 
     }
-    //mostly done
+  
 
 
 }
@@ -106,7 +112,7 @@ function shuffleImages() {
 // on the page.  All cards have the name attribute set to card.
 // It also sets the cursor (part of the style) to 'pointer'
 function enableAllCards() {
-   var cards  = document.getElementsByName("card");
+ var cards  = document.getElementsByName("card");
     for (var i =0;i<cards.length; i++){
         cards[i].onclick = handleClick;
         cards[i].style.cursor = 'pointer';
@@ -119,11 +125,9 @@ function enableAllCards() {
 // enables (see enable all) only the cards whose backgroundImage
 // style property is not 'none'
 function enableAllRemainingCards() {
-
-    
-        var cards  = document.getElementsByName("card");
+    var cards  = document.getElementsByName("card");
         for (var i =0;i<cards.length; i++){
-            if(cards[i].backgroundImage!="none"){// if the backgroundimage is nothing and the card doesnt already exist in the hand. 
+            if(cards[i].backgroundImage!="none"){ 
             cards[i].onclick = handleClick;
             cards[i].style.cursor = 'pointer';
             }
