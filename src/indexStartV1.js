@@ -31,20 +31,7 @@ function init()
     
     showMatches()
     enableAllCards();
-    
 
-    //we tried initializing th4e array here, John recommended that I take a closer look at initializing the array in the constructor
-    //overall review scope of assignment
-    //check videos again if not working then restart ! 
-    //finish shuffle and show matches
-
-   
-    
-   
-
-
-
-   
     for(var i=0;i< images.length; i++){
         var cardImage = imagePath +images[i];
         var card = document.getElementById(i);
@@ -54,18 +41,6 @@ function init()
    
     showAllBacks();
    
-    
-    
-    
-    
-
-
-
-    // fill the array of images
-    // shuffle them
-    // show the number of matches on the page
-    // enable all of the card elements on the page
-    // show the backs of all of the cards
 }
 
 // shows the number of matches and tries in the status element on the page
@@ -104,7 +79,7 @@ function shuffleImages() {
 
     }
   
-
+// 
 
 }
 
@@ -133,11 +108,6 @@ function enableAllRemainingCards() {
             }
         }
     }
-    
-    
-
-
-
 // shows the back of one card based on it's index
 // each card has an id attribute set to it's index in the html page
 // the backgroundImage (style) is set to the url of the image
@@ -159,12 +129,11 @@ function showAllBacks() {
     }
 
 }
-// END PART 1 - TEST THIS FAR //
 
-// PART 2 //
-// this is the function that fires when the user clicks on a card
+
+
 function handleClick() {
-
+// fires when the user clicks on a card^
     // declare the variable index and assign it to the current card's id attribute
     var index = this.id;
   
@@ -185,15 +154,7 @@ function handleClick() {
         setTimeout(checkCards,2000);
 
     }
-    //      assign firstPick to index
-    // else
-    //      assign secondPick to index
-    //      disable all of the cards
-    //      set a timer for 2 seconds.  Call checkCards when it fires.
 
-    // end if
-    //var index = this.id;
-    //var 
 }
 
 // disable one card based on it's index
@@ -235,21 +196,6 @@ function checkCards() {
         enableAllRemainingCards();
     }
     
-    // increment the number of tries
-    // if the 2 cards match
-    //      increment the number of matches
-    //      remove the first(pick) card from the board
-    //      remove the secon(pick) card from the board
-    //      if there are cards on the board
-    //          enable all of the remaining cards
-    //      end if
-
-    // else
-    //      turn the first(pick) card back over
-    //      turn the second(pick) card back over
-    //      enable all of the remaining cards
-    // end if
-    // update the matches and tries on the page
     showMatches();
     firstPick=-1;
     secondPick=-1;
