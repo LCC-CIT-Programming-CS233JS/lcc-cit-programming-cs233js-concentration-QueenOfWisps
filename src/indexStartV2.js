@@ -115,13 +115,24 @@
     enableAllCards() 
     {
         let cards  = document.getElementsByName("card");
-           for (let i =0;i<cards.length; i++){
+           for (let i =0;i<cards.length; i++)
+            {
                cards[i].onclick = this.handleClick.bind(this, i);
                cards[i].style.cursor = 'pointer';
-       
-           }
+            }
            
-     }
+    }
+
+    enableAllRemainingCards() {
+        let cards  = document.getElementsByName("card");
+            for (let i =0;i<cards.length; i++)
+            {
+                if(cards[i].backgroundImage!="none"){ 
+                cards[i].onclick = this.handleClick.bind(this, i);
+                cards[i].style.cursor = 'pointer';
+                }
+            }
+        }
 
      handleClick(index) 
      {
