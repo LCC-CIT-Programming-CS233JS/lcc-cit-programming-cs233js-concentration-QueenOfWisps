@@ -43,6 +43,13 @@
         this.shuffleImages();
         this.showMatches()
         this.enableAllCards();
+        for(let i=0;i< this.images.length; i++){
+            let cardImage = this.imagePath +this.images[i];
+            let card = document.getElementById(i);
+            card.style.backgroundImage= "url('"+ cardImage +"')";
+    
+        }
+        this.showAllBacks();
     }
 
     // example:  cardjh.jpg is the jack of hearts
@@ -64,7 +71,7 @@
     shuffleImages() {
 
 
-        for(let i=0;i<images.length;i++)
+        for(let i=0;i<this.images.length;i++)
         {
             let rand = Math.floor(Math.random() * 19);//if doesnt work try math.floor.
             //let temp=images[i];
@@ -94,7 +101,7 @@
 
     showBack(index) 
     {
-        let backImage = imagePath + 'black_back.jpg';
+        let backImage = this.imagePath + 'black_back.jpg';
         let card = document.getElementById(index);
         card.style.backgroundImage = 'url("'+ backImage + '")';
        
@@ -154,16 +161,32 @@
     }
     removeCard(index) 
     {
-        this.card = document.getElementById(index);
+        let card = document.getElementById(index);
         card.style.backgroundImage = 'none';
 
+    }
+    disableCard(index) 
+    {
+        let card = document.getElementById(index);
+        card.onclick = () => {}; 
+        card.style.cursor = 'none';
+       
+        
+    }
+    
+    // disable all of the cards
+    disableAllCards() 
+    {
+      
+        document.getElementsByName("card").onclick=()=> {};
+    
     }
 
     isMatch() {
         //tried to define cards here.
           //console.log(firstPick+" "+secondPick);
          
-          if(this.images[firstPick].substr(4,1)==this.images[secondPick].substr(4,1)) 
+          if(this.images[this.firstPick].substr(4,1)==this.images[this.secondPick].substr(4,1)) 
           {
               return true;
           }
@@ -173,6 +196,30 @@
           }
       
       }
+    checkCards() {
+        this.tries++
+        if(this.isMatch()==true){
+            this.matches++
+            this.removeCard(this.firstPick);
+            this.removeCard(this.secondPick);
+        
+            if(this.matches<10){
+                    this.enableAllRemainingCards();
+            }
+        }
+        else
+        {
+            this.showBack(this.firstPick);
+            this.showBack(this.secondPick);
+            this.enableAllRemainingCards();
+        }
+        
+        this.showMatches();
+        this.firstPick=-1;
+        this.secondPick=-1;
+        // reset the firstpick to -1
+        // reset the secondpick to -1
+        }
       
 
 
@@ -201,7 +248,8 @@
 let concentration;
 
 // Add an event handler to the load event of the window. 
-window.onload = ()=>{new Concentration();}
+window.onload = ()=>{concentration=new Concentration();}
+//I COULD SEE STUFF BEFORE I HAD CONCENTRATION BEFORE THE EQUAL SIGN. 
 // Use an anonymous function or an arrow function to
 // set the concentration variable to an instance of Concentration
 

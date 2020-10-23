@@ -16,7 +16,7 @@ var matches = 0;
 
 
 var tries = 0;
-var hand= Array(20).fill(null);
+
 
 
 // PART 1 //
@@ -159,7 +159,7 @@ function handleClick() {
 
 // disable one card based on it's index
 function disableCard(index) {
-    var card = document.getElementById(index);
+    let card = document.getElementById(index);
     card.onclick = () => {}; 
     card.style.cursor = 'none';
    
@@ -168,9 +168,7 @@ function disableCard(index) {
 
 // disable all of the cards
 function disableAllCards() {
-    for(var i=0; i<hand.length;i++){
-        hand[i]=null;
-    }
+  
     document.getElementsByName("card").onclick=()=> {};
 
 }
@@ -239,7 +237,7 @@ function isMatch() {
 function removeCard(index) {
 var card = document.getElementById(index);
 card.style.backgroundImage = 'none';
-hand[index]=index;//add the disabled card to the hand which is not really a hand but a graveyard.
+//add the disabled card to the hand which is not really a hand but a graveyard.
 }
 // END PART 3 - TEST THE ENTIRE APP //
 
